@@ -22,7 +22,7 @@ System.register(['@angular/core'], function(exports_1, context_1) {
                 function SpelerStandSortPipe() {
                 }
                 SpelerStandSortPipe.prototype.transform = function (value, filter) {
-                    console.log("sorting on " + filter);
+                    //console.log("sorting on " + filter);
                     if (filter === "datum") {
                         return value.sort(function (a, b) {
                             if (a.tegNaam == 'TOTAAL') {

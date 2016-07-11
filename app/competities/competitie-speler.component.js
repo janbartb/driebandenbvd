@@ -48,7 +48,7 @@ System.register(["@angular/core", "@angular/router", "./competitie.service", "..
                     this._sub = this.route.params.subscribe(function (params) {
                         _this.compId = params['compId'];
                         _this.spelerId = params['splId'];
-                        console.log('In init. Param = ' + _this.compId + ' ' + _this.spelerId);
+                        //console.log('In init. Param = ' + this.compId + ' ' + this.spelerId);
                         _this.getCompetitie();
                     });
                 };
@@ -65,6 +65,9 @@ System.register(["@angular/core", "@angular/router", "./competitie.service", "..
                     });
                 };
                 CompetitieSpelerComponent.prototype.onRowSelected = function (spelerId) {
+                    if (!spelerId) {
+                        return;
+                    }
                     this.router.navigate(['/competitie', this.compId, spelerId]);
                 };
                 CompetitieSpelerComponent.prototype.setClasses = function (naam) {

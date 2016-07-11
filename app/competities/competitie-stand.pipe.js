@@ -22,7 +22,7 @@ System.register(['@angular/core'], function(exports_1, context_1) {
                 function CompStandSortPipe() {
                 }
                 CompStandSortPipe.prototype.transform = function (value, filter) {
-                    console.log("sorting on " + filter);
+                    //console.log("sorting on " + filter);
                     if (filter === "rangPunt") {
                         return value.sort(function (a, b) {
                             return a.rangPunt < b.rangPunt ? -1 : 1;

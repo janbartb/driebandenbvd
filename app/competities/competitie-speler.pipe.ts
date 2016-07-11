@@ -10,7 +10,7 @@ import {ISpelerStand} from "../model/speler.stand";
 export class SpelerStandSortPipe implements PipeTransform {
 
     transform(value: ISpelerStand[], filter: string): ISpelerStand[] {
-        console.log("sorting on " + filter);
+        //console.log("sorting on " + filter);
         if (filter === "datum") {
             return value.sort(function(a: ISpelerStand, b: ISpelerStand): number {
                 if (a.tegNaam == 'TOTAAL') {

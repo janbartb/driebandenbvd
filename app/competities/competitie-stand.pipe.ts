@@ -10,7 +10,7 @@ import {ICompStand} from "../model/competitie.stand";
 export class CompStandSortPipe implements PipeTransform {
 
     transform(value: ICompStand[], filter: string): ICompStand[] {
-        console.log("sorting on " + filter);
+        //console.log("sorting on " + filter);
         if (filter === "rangPunt") {
             return value.sort(function(a: ICompStand, b: ICompStand): number {
                 return a.rangPunt < b.rangPunt ? -1 : 1;

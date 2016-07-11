@@ -35,7 +35,7 @@ export class CompetitieStandComponent implements OnInit, OnDestroy {
         this._sub = this.route.params.subscribe(
             params => {
                 this.compId = params['compId'];
-                console.log('In init. Param = ' + this.compId);
+                //console.log('In init. Param = ' + this.compId);
                 this.getCompetitie();
             }
         );

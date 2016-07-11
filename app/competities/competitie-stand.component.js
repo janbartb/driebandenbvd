@@ -46,7 +46,7 @@ System.register(['@angular/core', '@angular/router', "./competitie.service", "..
                     var _this = this;
                     this._sub = this.route.params.subscribe(function (params) {
                         _this.compId = params['compId'];
-                        console.log('In init. Param = ' + _this.compId);
+                        //console.log('In init. Param = ' + this.compId);
                         _this.getCompetitie();
                     });
                 };

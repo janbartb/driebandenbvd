@@ -91,7 +91,7 @@ export class CompetitieApiService {
     private extractData(res: Response) {
         let body = res.json();
         var result = body.data || null;
-        console.log('Extracted: ' + JSON.stringify(result));
+        //console.log('Extracted: ' + JSON.stringify(result));
         return result;
     }
 

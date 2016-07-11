@@ -32,7 +32,7 @@ export class CompetitieSpelerComponent implements OnInit, OnDestroy {
             params => {
                 this.compId = params['compId'];
                 this.spelerId = params['splId'];
-                console.log('In init. Param = ' + this.compId + ' ' + this.spelerId);
+                //console.log('In init. Param = ' + this.compId + ' ' + this.spelerId);
                 this.getCompetitie();
             }
         );
@@ -54,6 +54,9 @@ export class CompetitieSpelerComponent implements OnInit, OnDestroy {
     }
 
     onRowSelected(spelerId: string): void {
+        if (!spelerId) {
+            return;
+        }
         this.router.navigate(['/competitie', this.compId, spelerId]);
     }
 

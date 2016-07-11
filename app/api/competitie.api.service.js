@@ -94,7 +94,7 @@ System.register(["@angular/core", "@angular/http"], function(exports_1, context_
                 CompetitieApiService.prototype.extractData = function (res) {
                     var body = res.json();
                     var result = body.data || null;
-                    console.log('Extracted: ' + JSON.stringify(result));
+                    //console.log('Extracted: ' + JSON.stringify(result));
                     return result;
                 };
                 CompetitieApiService.prototype.handleError = function (error) {
