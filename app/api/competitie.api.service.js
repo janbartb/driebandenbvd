@@ -72,7 +72,7 @@ System.register(["@angular/core", "@angular/http"], function(exports_1, context_
                 CompetitieApiService.prototype.getCompetitie = function (id) {
                     var _this = this;
                     if (this._competitie && this._competitie.compId == id) {
-                        console.log('Getting competitie from memory');
+                        //console.log('Getting competitie from memory');
                         return Promise.resolve(this._competitie);
                     }
                     else {

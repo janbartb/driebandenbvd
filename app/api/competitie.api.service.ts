@@ -64,7 +64,7 @@ export class CompetitieApiService {
 
     getCompetitie(id: string): Promise<ICompetitie> {
         if (this._competitie && this._competitie.compId == id) {
-            console.log('Getting competitie from memory');
+            //console.log('Getting competitie from memory');
             return Promise.resolve(this._competitie);
         }
         else {
