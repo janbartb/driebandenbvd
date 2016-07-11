@@ -1,0 +1,37 @@
+th {
+    color: grey;
+}
+td {
+    color: lightgrey;
+}
+.num {
+    text-align: right;
+}
+
+.cen {
+    text-align: center;
+}
+
+.nadruk {
+    color: #edea2f;
+    font-weight: bold;
+}
+
+.rb {
+    width: 6px;
+    border-right: #868686 solid thin;
+}
+
+/*tr.totaal {*/
+    /*background-color: #CCCCCC;*/
+/*}*/
+
+.totaal td {
+    background-color: #CCCCCC;
+    color: #000000;
+    font-weight: bold;
+}
+
+.totaal .nadruk {
+    color: red;
+}
