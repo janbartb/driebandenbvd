@@ -9,6 +9,7 @@ import {CompetitieStandComponent} from "./competities/competitie-stand.component
 import {CompetitieService} from "./competities/competitie.service";
 import './rxjs-operators';
 import {CompetitieSpelerComponent} from "./competities/competitie-speler.component";
+import {CompetitiePdfService} from "./competities/competitie.pdf.service";
 
 @Component({
     selector: 'bvd-app',
@@ -16,6 +17,7 @@ import {CompetitieSpelerComponent} from "./competities/competitie-speler.compone
     directives: [ROUTER_DIRECTIVES],
     providers: [CompetitieApiService, 
                 CompetitieService,
+                CompetitiePdfService,
                 HTTP_PROVIDERS],
     precompile: [
         WelcomeComponent,
@@ -50,6 +52,7 @@ export class AppComponent implements OnInit {
     }
 
     private setEnvironment(env: string): void {
+        console.log('Set environment : ' + env);
         if (!env) {
             this.errorMessage = 'ERROR: Environment is undefined or null';
             this.linkTxt = 'ERROR...';

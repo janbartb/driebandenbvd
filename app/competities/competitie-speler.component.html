@@ -3,10 +3,11 @@
         {{errorMessage}}
     </div>
     <div class="alert alert-info">
-        Selecteer een tegenstander om de wedstrijdgegevens van die speler te bekijken.
+        Selecteer een tegenstander om de wedstrijdgegevens van die speler te bekijken.<br>
+        Klik op de titel om terug te gaan naar het competitie overzicht.
     </div>
     <div class="row" style="vertical-align: bottom">
-        <div class="col-xs-7" style="font-size: 20pt">
+        <div class="col-xs-7" style="font-size: 20pt" (click)="backToComp()">
             Competitie {{compId}} - <span class="hidden-xs">wedstrijden van </span>{{speler.naam}}
         </div>
         <div class="col-xs-5"style="text-align: right; font-size: 16pt">

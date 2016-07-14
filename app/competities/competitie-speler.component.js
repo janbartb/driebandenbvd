@@ -64,6 +64,9 @@ System.register(["@angular/core", "@angular/router", "./competitie.service", "..
                         _this.errorMessage = error;
                     });
                 };
+                CompetitieSpelerComponent.prototype.backToComp = function () {
+                    this.router.navigate(['/competitie', this.compId]);
+                };
                 CompetitieSpelerComponent.prototype.onRowSelected = function (spelerId) {
                     if (!spelerId) {
                         return;

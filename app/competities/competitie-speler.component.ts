@@ -53,6 +53,10 @@ export class CompetitieSpelerComponent implements OnInit, OnDestroy {
             );
     }
 
+    backToComp(): void {
+        this.router.navigate(['/competitie', this.compId]);
+    }
+
     onRowSelected(spelerId: string): void {
         if (!spelerId) {
             return;

@@ -9,6 +9,7 @@ import {CompetitieApiService} from "../api/competitie.api.service";
 import {ICompStand} from "../model/competitie.stand";
 import {CompStandSortPipe} from "./competitie-stand.pipe";
 import {Observable} from "rxjs/Rx";
+import {CompetitiePdfService} from "./competitie.pdf.service";
 
 @Component({
     templateUrl: 'app/competities/competitie-stand.component.html',
@@ -22,6 +23,7 @@ export class CompetitieStandComponent implements OnInit, OnDestroy {
     compStand: ICompStand[] = <ICompStand[]>[];
     nogTeSpelen: number = 0;
     sortField: string = 'rangPunt';
+    downloadMessage: string;
     errorMessage: string;
     private _sub: any;
 
@@ -29,6 +31,7 @@ export class CompetitieStandComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private router: Router,
         private compService: CompetitieService,
+        private pdfService: CompetitiePdfService,
         private apiService: CompetitieApiService) {}
 
     ngOnInit() {
@@ -54,6 +57,18 @@ export class CompetitieStandComponent implements OnInit, OnDestroy {
                     this.errorMessage = <any>error;
                 }
             );
+    }
+
+    makePdf(): void {
+        this.apiService.getCompetitie(this.compId)
+            .then(data => {
+                this.pdfService.makePdfCompetitieStand(data);
+                this.downloadMessage = "Het PDF overzicht is opgeslagen in de download map."
+            });
+    }
+
+    clearMessage(): void {
+        this.downloadMessage = undefined;
     }
 
     onRowSelected(spelerId: string): void {

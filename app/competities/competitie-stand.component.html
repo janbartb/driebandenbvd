@@ -2,11 +2,22 @@
     <div class="alert alert-error" *ngIf="errorMessage">
         {{errorMessage}}
     </div>
+    <div class="alert alert-success alert-dismissible" role="alert" *ngIf="downloadMessage">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="clearMessage()"><span aria-hidden="true">&times;</span></button>
+        <strong>{{downloadMessage}}</strong>
+    </div>
     <div class="alert alert-info">
         Selecteer een speler om de wedstrijdgegevens van die speler te bekijken.
     </div>
     <div class="row" style="vertical-align: bottom">
-        <div class="col-xs-6" style="font-size: 20pt">Competitie {{compId}}</div>
+        <div class="col-xs-6" style="font-size: 20pt">
+            Competitie {{compId}}
+            <button style="margin-left: 50px" type="button" class="btn btn-primary btn-sm"
+                    (click)="makePdf()" title="Download overzicht in PDF formaat">
+                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+                <span style="margin-left: 10px">als PDF</span>
+            </button>
+        </div>
         <div class="col-xs-6">
             <div class="row">
                 <div class="col-xs-12" style="text-align: right">
