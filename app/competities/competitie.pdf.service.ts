@@ -3,6 +3,7 @@ import {CompetitieService} from "./competitie.service";
 import {ICompetitie} from "../model/competitie";
 import {ICompStand} from "../model/competitie.stand";
 import {ISpeler} from "../model/speler";
+import {IWedstrijd} from "../model/wedstrijd";
 
 @Injectable()
 export class CompetitiePdfService {
@@ -23,7 +24,7 @@ export class CompetitiePdfService {
         var doc = this.getNewPdf('landscape', 'mm', 'A4');
         // title
         doc.setFontSize(24);
-        doc.setFontType('bolditalic')
+        doc.setFontType('bolditalic');
         doc.text(20, 24, 'Driebanden competitie ' + this.comp.compId);
         // logo
         doc.addImage(this.logo, 'JPEG', 250, 10, 28, 16);
@@ -131,6 +132,59 @@ export class CompetitiePdfService {
         doc.text(20, 190, 'Nog te spelen : ' + this.compService.getNogTeSpelenWeds(competitie) + ' wedstrijden');
         var datum = competitie.wijzigDatum.substr(0, 10);
         doc.text(221, 190, 'Laatst gewijzigd : ' + datum);
+        //
+        // OVERZICHT NOG TE SPELEN
+        //
+        doc.addPage();
+        // title
+        doc.setFontSize(22);
+        doc.setFontType('bolditalic');
+        doc.text(20, 24, 'Driebanden competitie ' + this.comp.compId);
+        // title
+        doc.setFontSize(18);
+        doc.text(20, 31, 'Nog te spelen wedstrijden');
+        // logo
+        doc.addImage(this.logo, 'JPEG', 250, 16, 28, 16);
+        // line
+        doc.setLineWidth(0.5);
+        doc.line(20, 34, 277, 34);
+        //
+        if (this.compService.getNogTeSpelenWeds(this.comp) == 0) {
+            doc.text(20, 60, 'Et zijn geen te spelen wedstrijden.');
+            doc.save('comp' + this.comp.compId + '.pdf');
+            return;
+        }
+        var spelers: ISpeler[] = this.comp.spelers.sort(function(a: ISpeler, b: ISpeler): number {
+            return (a.naam < b.naam) ? -1 : 1;
+        });
+        doc.setFontSize(12);
+        doc.setFontType('normal');
+        //
+        var y: number = 34;
+        spelers.forEach(function(speler: ISpeler): void {
+            y += 7;
+            doc.text(20, y, speler.naam);
+            doc.text(45, y, ':');
+            var x: number = 33;
+            spelers.forEach(function(teg: ISpeler): void {
+                if (speler.spelerId == teg.spelerId) {
+                    return;
+                }
+                if (speler.wedstrijden) {
+                    var wed: IWedstrijd = speler.wedstrijden.find(function(wedstr: IWedstrijd): boolean {
+                        return wedstr.tegenstanderId === teg.spelerId;
+                    });
+                    if (!wed) {
+                        x += 15;
+                        doc.text(x, y, teg.spelerId);
+                    }
+                }
+                else {
+                    x += 15;
+                    doc.text(x, y, teg.spelerId);
+                }
+            });
+        });
         // saven
         doc.save('comp' + this.comp.compId + '.pdf');
     }
