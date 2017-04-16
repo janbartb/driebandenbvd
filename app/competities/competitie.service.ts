@@ -210,27 +210,42 @@ export class CompetitieService {
         // bereken de punten
         var splHeeftCarsGehaald: boolean = +splWed.caramboles >= splTsCar;
         var tegHeeftCarsGehaald: boolean = +tegWed.caramboles >= tegTsCar;
-        if (splHeeftCarsGehaald) {
-            if (tegHeeftCarsGehaald) {
-                punten += 1;
-            }
-            else {
-                punten += 2;
-            }
-            if (+splWed.wedBeurten < +comp.compBeurten) {
-                punten += 1;
-            }
-        }
-        else {  // speler heeft aantal caramboles niet gehaald
-            if (!tegHeeftCarsGehaald) {
-                if (splRend > tegRend) {
+        if (comp.compId === '2016') {
+            if (splHeeftCarsGehaald) {
+                if (tegHeeftCarsGehaald) {
+                    punten += 1;
+                }
+                else {
                     punten += 2;
                 }
-                else if (splRend === tegRend) {
+                if (+splWed.wedBeurten < +comp.compBeurten) {
                     punten += 1;
                 }
             }
-            if (splGemid > splTsGem) {
+            else {  // speler heeft aantal caramboles niet gehaald
+                if (!tegHeeftCarsGehaald) {
+                    if (splRend > tegRend) {
+                        punten += 2;
+                    }
+                    else if (splRend === tegRend) {
+                        punten += 1;
+                    }
+                }
+                if (splGemid > splTsGem) {
+                    punten += 1;
+                }
+            }
+        }
+        else {
+            if (splRend > tegRend) {
+                punten += 2;
+            }
+            else {
+                if (splRend === tegRend) {
+                    punten += 1;
+                }
+            }
+            if (splRend > 100) {
                 punten += 1;
             }
         }

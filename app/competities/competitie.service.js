@@ -215,27 +215,42 @@ System.register(['@angular/core'], function(exports_1, context_1) {
                     // bereken de punten
                     var splHeeftCarsGehaald = +splWed.caramboles >= splTsCar;
                     var tegHeeftCarsGehaald = +tegWed.caramboles >= tegTsCar;
-                    if (splHeeftCarsGehaald) {
-                        if (tegHeeftCarsGehaald) {
-                            punten += 1;
-                        }
-                        else {
-                            punten += 2;
-                        }
-                        if (+splWed.wedBeurten < +comp.compBeurten) {
-                            punten += 1;
-                        }
-                    }
-                    else {
-                        if (!tegHeeftCarsGehaald) {
-                            if (splRend > tegRend) {
+                    if (comp.compId === '2016') {
+                        if (splHeeftCarsGehaald) {
+                            if (tegHeeftCarsGehaald) {
+                                punten += 1;
+                            }
+                            else {
                                 punten += 2;
                             }
-                            else if (splRend === tegRend) {
+                            if (+splWed.wedBeurten < +comp.compBeurten) {
                                 punten += 1;
                             }
                         }
-                        if (splGemid > splTsGem) {
+                        else {
+                            if (!tegHeeftCarsGehaald) {
+                                if (splRend > tegRend) {
+                                    punten += 2;
+                                }
+                                else if (splRend === tegRend) {
+                                    punten += 1;
+                                }
+                            }
+                            if (splGemid > splTsGem) {
+                                punten += 1;
+                            }
+                        }
+                    }
+                    else {
+                        if (splRend > tegRend) {
+                            punten += 2;
+                        }
+                        else {
+                            if (splRend === tegRend) {
+                                punten += 1;
+                            }
+                        }
+                        if (splRend > 100) {
                             punten += 1;
                         }
                     }
